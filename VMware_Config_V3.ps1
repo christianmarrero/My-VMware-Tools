@@ -37,7 +37,8 @@ Connect-VIServer $vcenter -WarningAction SilentlyContinue
 $clustername = Get-Cluster | Where-Object {$_.Name -eq "Cluster1"} 
 $clustername = Get-Cluster | Where-Object {$_.Name -eq "Cluster1"}
 
-foreach ($item in $clustername){
+foreach ($item in $clustername)
+{
 
     Write-Host "Looking for Cluster Named Cluster 1..." -ForegroundColor Yellow
     
