@@ -1,0 +1,21 @@
+$vms = Get-VM | Where-Object { $_.Name -like ('VM-*')}
+
+foreach ($item in $vms)
+ 
+{
+    Write-Host "Validate Power States..." -ForegroundColor Yellow
+    $power = Get-VM -Name $vms | Where-Object {$_.PowerState -eq ('PoweredOn')}
+    
+        if (!$power)
+        {
+
+            Write-Host "Power VM On" -ForegroundColor Green
+            Start-VM -VM $vms
+
+        }
+
+        if ($power)
+        {
+            Write-Host "VMs arelady power ON"
+        }
+}

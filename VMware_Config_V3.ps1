@@ -127,4 +127,25 @@ for ($i = 1; $i -le 10; $i++) {
     $vmList += New-VM -Name $vmName -ResourcePool $clustername -Template $template
 }
 
-$vms = Get-VM | Where-Object { $_.Name -like ('VM-*')} | Start-VM -VM $vms
+$vms = Get-VM | Where-Object { $_.Name -like ('VM-*')}
+
+foreach ($item in $vms)
+ 
+{
+    Write-Host "Validate Power States..." -ForegroundColor Yellow
+    $power = Get-VM -Name $vms | Where-Object {$_.PowerState -eq ('PoweredOn')}
+    
+        if (!$power)
+        {
+
+            Write-Host "Power VM On" -ForegroundColor Green
+            Start-VM -VM $vms
+
+        }
+
+        if ($power)
+        {
+            Write-Host "VMs arelady power ON"
+        }
+}
+#END
