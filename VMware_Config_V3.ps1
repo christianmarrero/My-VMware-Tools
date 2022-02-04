@@ -84,7 +84,7 @@ $portgroup = Get-VirtualPortGroup | Where-Object {$_.Name -eq "LAB Network"}
 ###### Create VM Template #######
 $clustername = Get-Cluster | Where-Object {$_.Name -eq "Cluster1"}
 
-    foreach ($item in $cluster)
+    foreach ($item in $clustername)
    
        {
 
