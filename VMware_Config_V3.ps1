@@ -126,3 +126,5 @@ for ($i = 1; $i -le 10; $i++) {
     $vmName = $vmNameTemplate -f $i
     $vmList += New-VM -Name $vmName -ResourcePool $clustername -Template $template
 }
+
+$vms = Get-VM | Where-Object { $_.Name -like ('VM-*')} | Start-VM -VM $vms
